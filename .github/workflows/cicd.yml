@@ -50,6 +50,7 @@ jobs:
 
   SAST:
     runs-on: ubuntu-latest
+    needs: code_coverage
     permissions:
       contents: read
 
