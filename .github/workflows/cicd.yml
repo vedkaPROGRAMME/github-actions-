@@ -65,7 +65,8 @@ jobs:
           cache: maven
 
       - name: Build, Test & SonarCloud Scan
-        run: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+        run: |
+          mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
           -Dsonar.projectKey=javareachabilityy \
           -Dsonar.organization=javareachabilityy \
           -Dsonar.host.url=https://sonarcloud.io \
