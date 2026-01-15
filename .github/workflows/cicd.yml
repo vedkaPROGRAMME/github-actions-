@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  build_test:
 
     runs-on: ubuntu-latest
     permissions:
@@ -27,5 +27,28 @@ jobs:
 
     - name: Test with Maven
       run: mvn test
+
+  code_coverafe:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Build with Maven and generate JaCoCo report
+      run: mvn test jacoco:report
+      # The report goal generates reports in target/site/jacoco/
+      
+    - name: Upload JaCoCo report artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: jacoco-report
+        path: target/site/jacoco/
+      # This allows you to download and inspect the full HTML report from the Actions summary
+
+s
 
    
