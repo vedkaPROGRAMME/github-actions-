@@ -70,7 +70,8 @@ jobs:
             -Dsonar.projectKey=github-actions- \
             -Dsonar.organization=vedkaPROGRAMME \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.branch.name=main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
