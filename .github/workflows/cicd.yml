@@ -119,6 +119,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
+          context: .
+          push: true
           images: ${{ vars.DOCKER_USERNAME }}/my-image
 
       - name: Log in to Docker Hub
