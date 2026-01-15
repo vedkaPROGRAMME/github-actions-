@@ -45,3 +45,30 @@ jobs:
         with:
           name: jacoco-report
           path: target/site/jacoco/
+
+
+
+  SAST:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build, Test & SonarCloud Scan
+        run: mvn -B verify sonar:sonar \
+          -Dsonar.projectKey=javareachabilityy \
+          -Dsonar.organization=javareachabilityy \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
