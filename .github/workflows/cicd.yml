@@ -68,7 +68,7 @@ jobs:
         run: |
           mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=vedkaPROGRAMME_github-actions- \
-            -Dsonar.organization=vedkaPROGRAMME \
+            -Dsonar.organization=vedkaprogramme \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.branch.name=main
