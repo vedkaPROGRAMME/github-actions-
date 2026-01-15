@@ -67,7 +67,7 @@ jobs:
       - name: Build, Test & SonarCloud Scan
         run: |
           mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=vedkaprogramme \
+            -Dsonar.projectKey=vedkaPROGRAMME_github-actions- \
             -Dsonar.organization=vedkaPROGRAMME \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
