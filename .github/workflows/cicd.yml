@@ -115,13 +115,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Extract Docker image metadata
+      - name: Set up Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          context: .
-          push: true
-          images: ${{ vars.DOCKER_USERNAME }}/my-image
+          images: veddangss/my-image
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -135,6 +136,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
+          context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           annotations: ${{ steps.meta.outputs.annotations }}
